@@ -21,4 +21,5 @@ namespace Domain
 
         public string? Venue { get; set; }
     }
+
 }

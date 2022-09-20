@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-   using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Domain;
 
-namespace Persistence
-{
-    public class Seed
+    namespace Persistence
     {
-        public static async Task SeedData(DataContext context)
+        public class Seed
         {
-            if (context.Activities.Any()) return;
-            
-            var activities = new List<Activity>
+            public static async Task SeedData(DataContext context)
+            {
+                if (context.Activities.Any()) return;
+
+                var activities = new List<Activity>
             {
                 new Activity
                 {
@@ -113,9 +113,9 @@ namespace Persistence
                 }
             };
 
-            await context.Activities.AddRangeAsync(activities);
-            await context.SaveChangesAsync();
+                await context.Activities.AddRangeAsync(activities);
+                await context.SaveChangesAsync();
+            }
         }
     }
-}
 }
