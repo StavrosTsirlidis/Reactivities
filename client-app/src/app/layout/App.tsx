@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import "./App.css";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
-import ActivityDashBoard from "../../features/activities/dashboard/ActivityDashBoard";
-
+import { Routes, Route } from "react-router-dom";
 import agent from "../../api/agent";
 import LoadingComponent from "./LoadingComponent";
 import { useStore } from "./stores/store";
 import { observer } from "mobx-react-lite";
+import Homepage from "../../features/home/homepage";
+import ActivityDashBoard from "../../features/activities/dashboard/ActivityDashBoard";
 
 function App() {
-
   const { activityStore } = useStore();
 
   useEffect(() => {
@@ -22,9 +22,12 @@ function App() {
     return <LoadingComponent content="loading" />;
   return (
     <>
-      <NavBar  />
+      <NavBar />
       <Container style={{ marginTop: "7em" }}>
-        <ActivityDashBoard />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/activities" element={<ActivityDashBoard />} />
+        </Routes>
       </Container>
     </>
   );
